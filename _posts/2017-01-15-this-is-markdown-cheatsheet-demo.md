@@ -1,9 +1,11 @@
 ---
 layout: post
-title: This is markdown cheatsheet demo
+title: Copied from author: [This is markdown cheatsheet demo]
 tags: [Demo, Markdown]
 comment: true
 ---
+
+把 Jekyll 模版作者的 Markdown 简介放在这个，方便自己学习，再次深表感谢🙏！
 
 # Typography
 

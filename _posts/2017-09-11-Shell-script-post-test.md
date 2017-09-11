@@ -2,6 +2,7 @@
 layout: post
 title: Shell script post test
 author: stone
+tags: [Demo]
 comment: false
 ---
 
