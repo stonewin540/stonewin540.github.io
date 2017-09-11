@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# 暂时只能处理短参数
+OPTION_HANDLED_COUNT=2 # 这是总数，包括选项和选项值的总和
+OPTION_TITLE="t" # 标题 -t
+OPTION_HELP="h"
+OPTION_DEFAULT_TITLE="untitled"
+
+STATUS_SUCCESS=0
+STATUS_FAILURE=1
+
+# utils
+function show_useage() {
+	useage="
+	\nGit pages blog post helper
+
+	\n\nUseage:
+	\n\tblog-pog [options]
+
+	\n\nOptions:
+	\n\t-t\tBlog title or empty, the \"${OPTION_DEFAULT_TITLE}\" will be used.
+	\n\t-h\tShow this page.
+
+	\n\nContact:
+	\n\tstonewin540@163.com
+	"
+	echo -e ${useage}
+}
+
+
+# critical detection
+if [[ 0 == $# ]]; then
+	show_useage
+	exit ${STATUS_FAILURE}
+fi
+
+# get title in arguments
+title=""
+# if test $# -ge ${OPTION_HANDLED_COUNT}; then
+	while getopts "${OPTION_TITLE}:${OPTION_HELP}" opt
+	do
+		case ${opt} in
+			${OPTION_TITLE} )
+			title=${OPTARG}
+				;;
+
+			${OPTION_HELP} )
+			show_useage
+			exit ${STATUS_FAILURE}
+				;;
+			? )
+			show_useage
+			exit ${STATUS_FAILURE}
+				;;
+		esac
+	done
+# fi
+# critical detection
+if [[ -z ${title} ]]; then
+	title=${OPTION_DEFAULT_TITLE}
+	echo "There is no title found in arguments, the \"${title}\" will be used."
+fi
+
+# format title
+title_array=(${title// / })
+if [[ 0 == ${#title_array[*]} ]]; then
+	echo "Oops, separated title: ${title_array[*]}"
+	exit ${STATUS_FAILURE}
+else
+	formated_title=""
+	for component in ${title_array[*]}
+	do
+		if [[ -z ${formated_title} ]]; then
+			formated_title=${component}
+		else
+			formated_title=${formated_title}"-"${component}
+		fi
+	done
+fi
+if [[ -n formated_title ]]; then
+	title=${formated_title}
+fi
+
+filename=`date "+%Y-%m-%d-"`${title}
+echo ${filename}
+
+
+posts_path="_posts/"
+template_file=".scripts/blog-template.md"
+file_path="${posts_path}${filename}.md"
+if [[ -e ${file_path} ]]; then
+	echo "Duplicated file: ${file_path}"
+	vim ${file_path}
+	exit ${STATUS_FAILURE}
+fi
+# touch new post
+touch ${file_path}
+cat ${template_file} > ${file_path}
+echo "Touched file: ${file_path}"
+vim ${file_path}
