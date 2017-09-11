@@ -19,3 +19,8 @@ It worked!
 先这样的，还不知能不能正常显示呢，作者让我加 utf-8 我就早早的家在 _config.yml 文件中了，还不知道位置对不对呢～
 
 See u soon~
+
+增加两篇教程的饮用：
+http://blog.csdn.net/superjimmy/article/details/51626842
+http://kresnik.wang/works/tech/2015/06/07/在github-pages网站下用jekyll制作博客教程.html
+
