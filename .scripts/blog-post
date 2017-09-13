@@ -2,9 +2,15 @@
 
 # 暂时只能处理短参数
 OPTION_HANDLED_COUNT=2 # 这是总数，包括选项和选项值的总和
+
+# 所接受的参数
+OPTION_AUTHOR="a"
 OPTION_TITLE="t" # 标题 -t
 OPTION_HELP="h"
+
+# 参数默认值
 OPTION_DEFAULT_TITLE="untitled"
+OPTION_DEFAULT_AUTHOR="stone"
 
 STATUS_SUCCESS=0
 STATUS_FAILURE=1
@@ -15,10 +21,11 @@ function show_useage() {
 	\nGit pages blog post helper
 
 	\n\nUseage:
-	\n\tblog-pog [options]
+	\n\tblog-post [options]
 
 	\n\nOptions:
-	\n\t-t\tBlog title or empty, the \"${OPTION_DEFAULT_TITLE}\" will be used.
+	\n\t-a\tBlog author or default (the default is 'stone').
+	\n\t-t\tBlog title or empty, the \"${OPTION_DEFAULT_TITLE}\" will be used for empty.
 	\n\t-h\tShow this page.
 
 	\n\nContact:
@@ -36,12 +43,18 @@ fi
 
 # get title in arguments
 title=""
+author=${OPTION_DEFAULT_AUTHOR}
 # if test $# -ge ${OPTION_HANDLED_COUNT}; then
-	while getopts "${OPTION_TITLE}:${OPTION_HELP}" opt
+	while getopts "${OPTION_TITLE}:${OPTION_HELP}:${OPTION_AUTHOR}:" opt
 	do
 		case ${opt} in
 			${OPTION_TITLE} )
 			title=${OPTARG}
+				;;
+			${OPTION_AUTHOR} )
+			if [[ -n ${OPTARG} ]]; then
+				author=${OPTARG}
+			fi
 				;;
 
 			${OPTION_HELP} )
@@ -60,6 +73,7 @@ if [[ -z ${title} ]]; then
 	title=${OPTION_DEFAULT_TITLE}
 	echo "There is no title found in arguments, the \"${title}\" will be used."
 fi
+handled_title=${title}
 
 # format title
 title_array=(${title// / })
@@ -95,6 +109,7 @@ if [[ -e ${file_path} ]]; then
 fi
 # touch new post
 touch ${file_path}
-cat ${template_file} > ${file_path}
+#cat ${template_file} > ${file_path}
+cat ${template_file} | sed -e "s/title:.*/title: ${handled_title}/" -e "s/author:.*/author: ${author}/"> ${file_path}
 echo "Touched file: ${file_path}"
 vim ${file_path}
