@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Copied from author: [This is markdown cheatsheet demo]
+title: this is markdown cheatsheet demo
 tags: [Demo, Markdown]
 comment: true
 ---
