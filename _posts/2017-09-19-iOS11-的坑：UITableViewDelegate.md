@@ -19,3 +19,6 @@ UITableViewDelegate 的默认行为更改；<br />
 <br />
 但是没有看到 UITableViewDelegate 官方文档有提及，有空查一下 iOS11 新特性的文档，不知道那里面是否提及～<br />
 That is a 🕳️!
+
+---
+经测试对 `UITableViewStyleGrouped／Plain` 均有影响
