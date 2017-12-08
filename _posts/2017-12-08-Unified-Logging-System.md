@@ -5,8 +5,6 @@ author: stone
 comment: false
 ---
 
-[WWDC2016-721: Unified Logging and Activity Tracing](https://developer.apple.com/videos/play/wwdc2016/721/)<br />
-<br />
 先来一条命令：
 此时我的 iOS Simulator 在运行我自己的 app
 ```shell
@@ -124,5 +122,6 @@ Timestamp                       Thread     Type        Activity             PID
 ---
 
 ---
-References
-[Apple Developer Documentation: Logging](https://developer.apple.com/documentation/os/logging#2878594?language=objc)
+References: <br />
+[Apple Developer Documentation: Logging](https://developer.apple.com/documentation/os/logging#2878594?language=objc)<br />
+[WWDC2016-721: Unified Logging and Activity Tracing](https://developer.apple.com/videos/play/wwdc2016/721/)<br />
