@@ -125,3 +125,5 @@ Timestamp                       Thread     Type        Activity             PID
 References: <br />
 [Apple Developer Documentation: Logging](https://developer.apple.com/documentation/os/logging#2878594?language=objc)<br />
 [WWDC2016-721: Unified Logging and Activity Tracing](https://developer.apple.com/videos/play/wwdc2016/721/)<br />
+[Logging: Using the os_log APIs](https://developer.apple.com/library/content/samplecode/Logging/Introduction/Intro.html)<br />
+
