@@ -3,6 +3,7 @@ layout: post
 title: Unified Logging System
 author: stone
 comment: false
+tags: [log, debug]
 ---
 
 先来一条命令：
