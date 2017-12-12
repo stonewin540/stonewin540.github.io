@@ -6,6 +6,13 @@ comment: false
 tags: [log, debug]
 ---
 
+````shell
+logger -is -p debug -t "[tag]" "[tag]: some message"
+````
+唯独 debug 模式输出时，如果没有用 log stream 捕捉过，那么信息在之后的 log show 中也不会有记录；
+就连 info 模式输出，之后再调用 log show 都可以被搜索到！
+
+---
 先来一条命令：
 此时我的 iOS Simulator 在运行我自己的 app
 ```shell
