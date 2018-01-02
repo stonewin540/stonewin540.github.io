@@ -5,6 +5,8 @@ author: stone
 comment: false
 ---
 
+[看看同样的问题吧～](http://www.cocoachina.com/cms/wap.php?action=article&id=20683 "www.cocoachina.com")
+---
 UITableViewDelegate 的默认行为更改；<br />
 
 <br />
